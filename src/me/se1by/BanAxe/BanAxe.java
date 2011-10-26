@@ -19,7 +19,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BanAxe extends JavaPlugin {
 	
 	 Logger log = Logger.getLogger("Minecraft");
-	 Logger log1 = Logger.getLogger("BanAxe");
 	
 
 	
@@ -57,7 +56,6 @@ static boolean enabled = false;
 		
 		if(sender instanceof Player)
 			{
-				Player player = (Player) sender;
 				
 				if (cmd.getName().equalsIgnoreCase("banaxe"))
 				{
@@ -71,12 +69,21 @@ static boolean enabled = false;
 					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "enabled");
 					
 						}
-				if (args[0].equalsIgnoreCase("disable"))
+				else if (args[0].equalsIgnoreCase("disable"))
 					{
 					hm.put(sender.getName(), false);
 					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "disabled");
 					}
+				else if (args.length == 0)
+				{
+					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "Usage /banaxe enable|disable");
 				}
+				else
+				{
+					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "Wrong input!");
+				}
+				}
+			
 		}
 
 		

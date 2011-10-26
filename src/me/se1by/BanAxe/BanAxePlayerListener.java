@@ -15,14 +15,15 @@ plugin = BanAxe;
 }
 
     
-    public void onPlayerInteractPlayer(PlayerInteractEntityEvent event) {
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
 
             Player admin = event.getPlayer();
             Entity user = event.getRightClicked();
             
-          
             if(plugin.hasEntry(admin)) {
+            	
             if (BanAxe.Active(admin)){   
+            	
             if (admin.getItemInHand().getTypeId() == 258) {
 
                     if(user instanceof Player){
@@ -30,8 +31,9 @@ plugin = BanAxe;
                     	admin.getWorld().strikeLightning(user.getLocation());
                             admin.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "You banned " + ((Player) user).getName());
                             ((Player) user).kickPlayer("You got banned by " + admin.getName());
-                            ((Player) user).setBanned(true);
-                            System.out.println("[BanAxe] " + admin.getName() + " banned " + user);
+                           // ((Player) user).setBanned(true);
+                            admin.performCommand("ban " + ((Player) user).getName());
+                            System.out.println("[BanAxe] " + admin.getName() + " banned " + ((Player)user).getName());
                     }
                             else{
                      admin.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] "+ ChatColor.RED + "Click on a user!");
