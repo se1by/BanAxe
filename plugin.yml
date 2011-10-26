@@ -1,0 +1,21 @@
+name:  BanAxe
+version:  0.1
+description:  Ban your users with a simple click on them!
+author:  se1by
+website:  http://www.live-craft.net
+
+main:  me.se1by.BanAxe.BanAxe
+
+commands:
+  banaxe:
+    description:  Ban your users!
+    usage:  /banaxe <status>
+    
+permissions:
+    BanAxe.*:
+        description:  Ban your users with a simple click on them!
+        children:
+            BanAxe.Use: false
+    BanAxe.Use:
+        description: Allows you to use your BanAxe!
+        default: op
