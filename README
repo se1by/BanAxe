@@ -1,0 +1,16 @@
+BanAxe - Ban AND have fun!
+
+Right click the bad bay to create a lightning which will hit him and, after 2 seconds, will ban him.
+
+Commands:
+/banaxe enable to enable the banaxe
+/banaxe disable to disable the banaxe
+/banaxe item ID to choose your ban item
+/banaxe global ID reason to globally ban a user (needs mcbans)
+/banaxe help shows all commands ingame
+
+Permissions:
+BanAxe.Use
+
+
+Hail the axe!

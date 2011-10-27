@@ -1,5 +1,5 @@
 name:  BanAxe
-version:  0.1
+version:  0.1.2
 description:  Ban your users with a simple click on them!
 author:  se1by
 website:  http://www.live-craft.net
@@ -9,7 +9,7 @@ main:  me.se1by.BanAxe.BanAxe
 commands:
   banaxe:
     description:  Ban your users!
-    usage:  /banaxe <status>
+    usage:   
     
 permissions:
     BanAxe.*:
