@@ -16,64 +16,58 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class BanAxe extends JavaPlugin {
+public class BanAxe extends JavaPlugin
+{
+	Logger log = Logger.getLogger("Minecraft");
 	
-	 Logger log = Logger.getLogger("Minecraft");
+	static HashMap<String, Boolean>hm = new HashMap<String, Boolean>();
 	
+	private final BanAxePlayerListener playerListener = new BanAxePlayerListener(this);
 
-	
-static HashMap<String, Boolean>hm = new HashMap<String, Boolean>();
-	
-private final BanAxePlayerListener playerListener = new BanAxePlayerListener(this);
-
-static boolean enabled = false;
+	static boolean enabled = false;
 
 	
 	@Override
-	public void onDisable() {
-
+	public void onDisable()
+	{
 		System.out.println("[BanAxe] disabled");
 	}
 
 	@Override
-	public void onEnable() {
-		
-		  
-		  
+	public void onEnable()
+	{
 		System.out.println("[BanAxe] enabled");
 		
 		PluginManager pm = getServer().getPluginManager();
 		
 		pm.registerEvent(Event.Type.PLAYER_INTERACT_ENTITY, this.playerListener, Priority.Normal, this);
-		
-		
 	}
+	
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+	{
 		boolean succeed = false;
-		
-		
-		
+				
 		if(sender instanceof Player)
+		{
+			if (cmd.getName().equalsIgnoreCase("banaxe"))
 			{
-				
-				if (cmd.getName().equalsIgnoreCase("banaxe"))
-				{
-				
-				
 				if (args[0].equalsIgnoreCase("enable"))
-						{
-					
+				{
 					hm.put(sender.getName(), true);
-					succeed = true;
-					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "enabled");
 					
-						}
+					succeed = true;
+					
+					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "enabled");
+				}
+				
 				else if (args[0].equalsIgnoreCase("disable"))
-					{
+				{
 					hm.put(sender.getName(), false);
+					
 					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "disabled");
-					}
+				}
+				
 				else if (args.length == 0)
 				{
 					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "Usage /banaxe enable|disable");
@@ -82,23 +76,18 @@ static boolean enabled = false;
 				{
 					sender.sendMessage(ChatColor.DARK_BLUE + "[BanAxe] " + ChatColor.RED + "Wrong input!");
 				}
-				}
-			
+			}
 		}
-
-		
-			
-		
-	return succeed;
-		
-		
-}
-	public static Boolean Active(Player player) {
-
-		return hm.get(player.getName());
-		}
+		return succeed;
+	}
 	
-	public boolean hasEntry(Player player) {
+	public static boolean Active(Player player)
+	{
+		return hm.get(player.getName());
+	}
+	
+	public boolean hasEntry(Player player)
+	{
 		return hm.containsKey(player.getName());
 	}
 }
